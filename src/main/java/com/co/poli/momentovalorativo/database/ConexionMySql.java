@@ -1,7 +1,7 @@
 package com.co.poli.momentovalorativo.database;
 
-import com.co.poli.momentovalorativo.model.Cursos;
-import com.co.poli.momentovalorativo.model.Student;
+import com.co.poli.momentovalorativo.model.Courses;
+import com.co.poli.momentovalorativo.model.Students;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,16 +37,16 @@ public class ConexionMySql {
         }
     }
 
-    public List<Student> getStudent() throws SQLException {
+    public List<Students> getStudents() throws SQLException {
         String sql = "SELECT * FROM students";
         String[] nameColumns = {"id", "name", "lastName", "age", "password", "createdAt", "updatedAt", "deletedAt"};
-        List<Student> list = new ArrayList<>();
+        List<Students> list = new ArrayList<>();
         try {
             createConection();
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(sql);
             while(result.next()){
-                list.add(new Student(result.getInt(1), result.getString("name"), result.getString("lastName"), result.getInt(25)));
+                list.add(new Students(result.getInt(1), result.getString("name"), result.getString("lastName"), result.getInt(25)));
             }
             stmt.close();
             return list;
@@ -57,16 +57,37 @@ public class ConexionMySql {
         }
     }
 
-    public List<Cursos> getCursos() throws SQLException {
-        String sql = "SELECT * FROM curses";
-        String[] nameColumns = {"id", "name_curse", "teache", "description", "password", "createdAt", "updatedAt", "deletedAt"};
-        List<Cursos> list = new ArrayList<>();
+    public List<Students> getStudentInsert() throws SQLException {
+        List<Students> list = new ArrayList<>();
+        try {
+            createConection();
+            String sqlStudents = "INSERT INTO alumnos (name, lastName, age, passwordAt, createdAt, updatedAt, deletedAt) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)";
+            PreparedStatement stmt = con.prepareStatement(sqlStudents);
+            stmt.setString(1, "Juan");
+            stmt.setString(2, "Scrumers");
+            stmt.setInt(3, 28);
+            stmt.executeUpdate();
+            stmt.close();
+
+            System.out.println("Records inserted successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error connecting to the database: " + e.getMessage());
+        }finally {
+            con.close();
+        }
+        return list;
+    }
+
+    public List<Courses> getCourse() throws SQLException {
+        String sql = "SELECT * FROM courses";
+        String[] nameColumns = {"id", "name_course", "teacher", "description", "createdAt", "updatedAt", "deletedAt"};
+        List<Courses> list = new ArrayList<>();
         try {
             createConection();
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(sql);
             while(result.next()){
-                list.add(new Cursos(result.getInt(1), result.getString("name_curse"), result.getString("teacher"), result.getString("description")));
+                list.add(new Courses(result.getInt(1), result.getString("name_course"), result.getString("teacher"), result.getString("description")));
             }
             stmt.close();
             return list;
@@ -76,11 +97,32 @@ public class ConexionMySql {
             con.close();
         }
     }
+
+    public List<Courses> getCourseInsert() throws SQLException {
+        List<Courses> list = new ArrayList<>();
+        try {
+            createConection();
+            String sqlCourses = "INSERT INTO courses (name_course, teacher, description, createdAt, updatedAt, deletedAt) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)";
+            PreparedStatement stmt = con.prepareStatement(sqlCourses);
+            stmt.setString(1, "Matematicas");
+            stmt.setString(2, "MauroDev");
+            stmt.setString(3, "More skills in development");
+            stmt.close();
+
+            System.out.println("Records inserted successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error connecting to the database: " + e.getMessage());
+        }finally {
+            con.close();
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         ConexionMySql conection = new ConexionMySql();
         try {
-            conection.getStudent();
-            conection.getCursos();
+            conection.getStudents();
+            conection.getCourse();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

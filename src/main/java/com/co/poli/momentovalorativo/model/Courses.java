@@ -2,32 +2,32 @@ package com.co.poli.momentovalorativo.model;
 
 import java.util.Date;
 
-public class Student {
+public class Courses {
     private int id;
-    private String name;
-    private String lastName;
-    private int age;
+    private String name_course;
+    private String teacher;
+    private String description;
     private String password;
     private Date createdAt;
     private Date updatedAt;
     private Date deteledAt;
 
-    public Student(int id, String name, String lastName, int age, String password, Date createdAt, Date updatedAt, Date deteledAt) {
+    public Courses(int id, String name_course, String teacher, String description, String password, Date createdAt, Date updatedAt, Date deteledAt) {
         this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.age = age;
+        this.name_course = name_course;
+        this.teacher = teacher;
+        this.description = description;
         this.password = password;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.deteledAt = deteledAt;
     }
 
-    public Student(int id, String name, String lastName, int age) {
+    public Courses(int id, String name_course, String teacher, String description) {
         this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.age = age;
+        this.name_course = name_course;
+        this.teacher = teacher;
+        this.description = description;
     }
 
     public int getId() {
@@ -38,28 +38,28 @@ public class Student {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getName_course() {
+        return name_course;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName_course(String name_course) {
+        this.name_course = name_course;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
-    public int getAge() {
-        return age;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPassword() {
@@ -94,4 +94,3 @@ public class Student {
         this.deteledAt = deteledAt;
     }
 }
-

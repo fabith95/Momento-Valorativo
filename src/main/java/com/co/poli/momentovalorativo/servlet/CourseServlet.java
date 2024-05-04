@@ -1,7 +1,7 @@
 package com.co.poli.momentovalorativo.servlet;
 
 import com.co.poli.momentovalorativo.database.ConexionMySql;
-import com.co.poli.momentovalorativo.model.Cursos;
+import com.co.poli.momentovalorativo.model.Courses;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,17 +12,17 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@WebServlet(name = "cursoServlet", value = "/cursos")
-public class CursoServlet extends HttpServlet {
+@WebServlet(name = "courseServlet", value = "/courses")
+public class CourseServlet extends HttpServlet {
     private ConexionMySql con;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
         try {
             if(request.getParameter("id") == null) {
-                ArrayList<Cursos> listCursos = (ArrayList<Cursos>) con.getCursos();
+                ArrayList<Courses> listCourse = (ArrayList<Courses>) con.getCourse();
                 PrintWriter out = response.getWriter();
-                //out.print(gson.toJson(listCursos));
+                //out.print(gson.toJson(listCourse));
                 out.flush();
             }else{
             }
