@@ -38,7 +38,7 @@ public class ConexionMySql {
     }
 
     public List<Student> getStudent() throws SQLException {
-        String sql = "SELECT * FROM student";
+        String sql = "SELECT * FROM students";
         String[] nameColumns = {"id", "name", "lastName", "age", "password", "createdAt", "updatedAt", "deletedAt"};
         List<Student> list = new ArrayList<>();
         try {
@@ -58,7 +58,7 @@ public class ConexionMySql {
     }
 
     public List<Cursos> getCursos() throws SQLException {
-        String sql = "SELECT * FROM cursos";
+        String sql = "SELECT * FROM curses";
         String[] nameColumns = {"id", "name_curse", "teache", "description", "password", "createdAt", "updatedAt", "deletedAt"};
         List<Cursos> list = new ArrayList<>();
         try {
