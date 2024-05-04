@@ -22,7 +22,7 @@ public class StudentServlet extends HttpServlet {
             if(request.getParameter("id") == null) {
                 ArrayList<Student> listStudent = (ArrayList<Student>) con.getStudent();
                 PrintWriter out = response.getWriter();
-                out.print(gson.toJson(listStudent));
+                //out.print(gson.toJson(listStudent));
                 out.flush();
             }else{
 

@@ -22,7 +22,7 @@ public class CursoServlet extends HttpServlet {
             if(request.getParameter("id") == null) {
                 ArrayList<Cursos> listCursos = (ArrayList<Cursos>) con.getCursos();
                 PrintWriter out = response.getWriter();
-                out.print(gson.toJson(listCursos));
+                //out.print(gson.toJson(listCursos));
                 out.flush();
             }else{
             }
