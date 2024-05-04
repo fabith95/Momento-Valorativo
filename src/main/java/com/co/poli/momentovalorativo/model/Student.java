@@ -23,6 +23,13 @@ public class Student {
         this.deteledAt = deteledAt;
     }
 
+    public Student(int id, String name, String lastName, int age) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
     public int getId() {
         return id;
     }

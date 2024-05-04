@@ -2,7 +2,6 @@ package com.co.poli.momentovalorativo.servlet;
 
 import com.co.poli.momentovalorativo.database.ConexionMySql;
 import com.co.poli.momentovalorativo.model.Cursos;
-import com.co.poli.momentovalorativo.model.Student;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +20,9 @@ public class CursoServlet extends HttpServlet {
         response.setContentType("application/json");
         try {
             if(request.getParameter("id") == null) {
-                ArrayList<Cursos> listStudent = (ArrayList<>) con.getCursos();
+                ArrayList<Cursos> listCursos = (ArrayList<Cursos>) con.getCursos();
                 PrintWriter out = response.getWriter();
-                out.print(gson.toJson(listStudent));
+                out.print(gson.toJson(listCursos));
                 out.flush();
             }else{
             }
@@ -31,6 +30,7 @@ public class CursoServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
 
     public void destroy() {
     }

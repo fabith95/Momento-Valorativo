@@ -23,6 +23,13 @@ public class Cursos {
         this.deteledAt = deteledAt;
     }
 
+    public Cursos(int id, String name_curse, String teacher, String description) {
+        this.id = id;
+        this.name_curse = name_curse;
+        this.teacher = teacher;
+        this.description = description;
+    }
+
     public int getId() {
         return id;
     }
