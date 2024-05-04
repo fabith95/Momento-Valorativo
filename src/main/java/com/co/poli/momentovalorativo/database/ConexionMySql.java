@@ -64,7 +64,7 @@ public class ConexionMySql {
             String sqlStudents = "INSERT INTO alumnos (name, lastName, age, passwordAt, createdAt, updatedAt, deletedAt) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)";
             PreparedStatement stmt = con.prepareStatement(sqlStudents);
             stmt.setString(1, "Juan");
-            stmt.setString(2, "Scrumers");
+            stmt.setString(2, "Development Ruiz");
             stmt.setInt(3, 28);
             stmt.executeUpdate();
             stmt.close();
