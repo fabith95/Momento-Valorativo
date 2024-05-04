@@ -1,5 +1,6 @@
 package com.co.poli.momentovalorativo.database;
 
+import com.co.poli.momentovalorativo.model.Cursos;
 import com.co.poli.momentovalorativo.model.Student;
 
 import java.sql.*;
@@ -56,6 +57,25 @@ public class ConexionMySql {
         }
     }
 
+    public List<Student> getCursos() throws SQLException {
+        String sql = "SELECT * FROM cursos";
+        String[] nameColumns = {"id", "name_curse", "teache", "description", "password", "createdAt", "updatedAt", "deletedAt"};
+        List<Cursos> list = new ArrayList<>();
+        try {
+            createConexion();
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery(sql);
+            while(result.next()){
+                list.add(new Cursos(result.getString("name_curse"), result.getString("teacher")));
+            }
+            stmt.close();
+            return list;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            con.close();
+        }
+    }
     public static void main(String[] args) {
         ConexionMySql conection = new ConexionMySql();
         try {
