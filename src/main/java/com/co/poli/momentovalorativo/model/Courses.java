@@ -7,17 +7,15 @@ public class Courses {
     private String name_course;
     private String teacher;
     private String description;
-    private String password;
     private Date createdAt;
     private Date updatedAt;
     private Date deteledAt;
 
-    public Courses(int id, String name_course, String teacher, String description, String password, Date createdAt, Date updatedAt, Date deteledAt) {
+    public Courses(int id, String name_course, String teacher, String description, Date createdAt, Date updatedAt, Date deteledAt) {
         this.id = id;
         this.name_course = name_course;
         this.teacher = teacher;
         this.description = description;
-        this.password = password;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.deteledAt = deteledAt;
@@ -60,14 +58,6 @@ public class Courses {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Date getCreatedAt() {

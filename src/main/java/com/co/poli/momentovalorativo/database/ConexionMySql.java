@@ -23,6 +23,8 @@ public class ConexionMySql {
         host = "localhost";
         nameDatabase = "ces3-exam";
     }
+
+
     //crear conection
     private void createConection(){
         try {
@@ -46,7 +48,7 @@ public class ConexionMySql {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(sql);
             while(result.next()){
-                list.add(new Students(result.getInt(1), result.getString("name"), result.getString("lastName"), result.getInt(25)));
+                list.add(new Students(result.getInt(1), result.getString("name"), result.getString("lastName"), result.getInt(4)));
             }
             stmt.close();
             return list;
@@ -61,11 +63,11 @@ public class ConexionMySql {
         List<Students> list = new ArrayList<>();
         try {
             createConection();
-            String sqlStudents = "INSERT INTO alumnos (name, lastName, age, passwordAt, createdAt, updatedAt, deletedAt) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)";
+            String sqlStudents = "INSERT INTO students(name, lastName, age, createdAt, updatedAt, deletedAt) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)";
             PreparedStatement stmt = con.prepareStatement(sqlStudents);
-            stmt.setString(1, "Juan");
-            stmt.setString(2, "Development Ruiz");
-            stmt.setInt(3, 28);
+            stmt.setString(1, "Raul");
+            stmt.setString(2, "Zuluaga");
+            stmt.setInt(3, 18);
             stmt.executeUpdate();
             stmt.close();
 
@@ -102,11 +104,12 @@ public class ConexionMySql {
         List<Courses> list = new ArrayList<>();
         try {
             createConection();
-            String sqlCourses = "INSERT INTO courses (name_course, teacher, description, createdAt, updatedAt, deletedAt) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)";
+            String sqlCourses = "INSERT INTO courses(name_course, teacher, description, createdAt, updatedAt, deletedAt) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, NULL)";
             PreparedStatement stmt = con.prepareStatement(sqlCourses);
-            stmt.setString(1, "Matematicas");
-            stmt.setString(2, "MauroDev");
-            stmt.setString(3, "More skills in development");
+            stmt.setString(1, "Software");
+            stmt.setString(2, "Oscar");
+            stmt.setString(3, "skills");
+            stmt.executeUpdate();
             stmt.close();
 
             System.out.println("Records inserted successfully.");
@@ -122,7 +125,9 @@ public class ConexionMySql {
         ConexionMySql conection = new ConexionMySql();
         try {
             conection.getStudents();
+            conection.getStudentInsert();
             conection.getCourse();
+            conection.getCourseInsert();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

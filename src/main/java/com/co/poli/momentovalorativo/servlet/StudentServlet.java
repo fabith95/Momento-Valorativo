@@ -32,6 +32,23 @@ public class StudentServlet extends HttpServlet {
         }
 
     }
+
+    public void doGetAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        try {
+            if(request.getParameter("id") == null) {
+                ArrayList<Students> listAllStudent = (ArrayList<Students>) con.getStudentInsert();
+                PrintWriter out = response.getWriter();
+                //out.print(gson.toJson(listAllStudent));
+                out.flush();
+            }else{
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     public void destroy() {
     }
 }
